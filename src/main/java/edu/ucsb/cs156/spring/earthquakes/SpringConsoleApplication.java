@@ -1,4 +1,4 @@
-package edu.ucsb.cs156.spring.console;
+package edu.ucsb.cs156.spring.earthquakes;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

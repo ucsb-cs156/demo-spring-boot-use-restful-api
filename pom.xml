@@ -15,14 +15,14 @@
     <groupId>edu.ucsb.cs156</groupId>
 
     <!-- (3) <artifactId/> -->
-    <artifactId>demo-spring-boot-console</artifactId>
+    <artifactId>demo-spring-boot-earthquakes</artifactId>
 
     <!-- (4) <version/> -->
     <version>1.0.0</version>
 
     <!-- (5) <packaging/> -->
     <!-- (6) <name/> -->
-    <name>demo-spring-boot-console</name>
+    <name>demo-spring-boot-earthquakes</name>
 
     <!-- (7) <description/> -->
     <!-- (8) <url/> -->
@@ -42,7 +42,7 @@
 
     <properties>
         <!-- The main class to start by executing java -jar -->
-        <mainClass>edu.ucsb.cs156.spring.console.SpringConsoleApplication</mainClass>
+        <mainClass>edu.ucsb.cs156.spring.earthquakes.SpringConsoleApplication</mainClass>
         <java.version>11</java.version>
     </properties>
 
