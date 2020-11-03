@@ -1,0 +1,154 @@
+<project>
+
+    <!-- (0) <modelVersion/> -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- (1) <parent/> -->
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.2.RELEASE</version>
+    </parent>
+
+    <!-- (2) <groupId/> -->
+    <groupId>edu.ucsb.cs156</groupId>
+
+    <!-- (3) <artifactId/> -->
+    <artifactId>demo-spring-boot-console</artifactId>
+
+    <!-- (4) <version/> -->
+    <version>1.0.0</version>
+
+    <!-- (5) <packaging/> -->
+    <!-- (6) <name/> -->
+    <name>demo-spring-boot-console</name>
+
+    <!-- (7) <description/> -->
+    <!-- (8) <url/> -->
+    <!-- (9) <inceptionYear/> -->
+    <!-- (10) <organization/> -->
+    <!-- (11) <licenses/> -->
+    <!-- (12) <developers/> -->
+    <!-- (13) <contributors/> -->
+    <!-- (14) <mailingLists/> -->
+    <!-- (15) <prerequisites/> -->
+    <!-- (16) <modules/> -->
+    <!-- (17) <scm/> -->
+    <!-- (18) <issueManagement/> -->
+    <!-- (19) <ciManagement/> -->
+    <!-- (20) <distributionManagement/> -->
+    <!-- (21) <properties/> -->
+
+    <properties>
+        <!-- The main class to start by executing java -jar -->
+        <mainClass>edu.ucsb.cs156.spring.console.SpringConsoleApplication</mainClass>
+        <java.version>11</java.version>
+    </properties>
+
+    <!-- (22) <dependencyManagement/> -->
+    <!-- (23) <dependencies/> -->
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>2.3.5.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <version>2.3.5.RELEASE</version>
+        </dependency>
+
+    </dependencies>
+
+    <!-- (24) <repositories/> -->
+    <!-- (25) <pluginRepositories/> -->
+    <!-- (26) <build/> -->
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <excludes>
+                    <exclude>**/conf.properties</exclude>
+                </excludes>
+            </resource>
+        </resources>
+        <plugins>
+
+            <!-- Gives us: mvn spring-boot:run -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>${mainClass}</mainClass>
+                </configuration>
+            </plugin>
+
+            <!-- For mvn:package, the jar file is now executable -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.2</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <!-- full package name of class with the main you want to run -->
+                            <mainClass>${mainClass}</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
+
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.5</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <version>1.5.2</version>
+                <configuration>
+                    <targetClasses>
+                        <param>edu.*</param>
+                    </targetClasses>
+                    <targetTests>
+                        <param>edu.*</param>
+                    </targetTests>
+                    <outputFormats>
+                        <outputFormat>HTML</outputFormat>
+                        <outputFormat>CSV</outputFormat>
+                        <outputFormat>XML</outputFormat>
+                    </outputFormats>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- (27) <reporting/> -->
+    <!-- (28) <profiles/> -->
+
+</project>
